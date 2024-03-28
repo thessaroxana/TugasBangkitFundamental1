@@ -1,4 +1,4 @@
-package com.dicoding.tugasbangkitfundamental1
+package com.dicoding.tugasbangkitfundamental1.ui.setting
 
 import android.os.Bundle
 import android.widget.CompoundButton
@@ -6,6 +6,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.dicoding.tugasbangkitfundamental1.databinding.ActivitySettingBinding
+import com.dicoding.tugasbangkitfundamental1.ui.viewmodel.SettingViewModel
+import com.dicoding.tugasbangkitfundamental1.ui.viewmodel.ViewModelFactory
 
 class SettingActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySettingBinding

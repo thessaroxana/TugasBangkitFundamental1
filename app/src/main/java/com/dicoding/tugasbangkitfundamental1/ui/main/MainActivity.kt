@@ -1,24 +1,21 @@
-package com.dicoding.tugasbangkitfundamental1.ui
+package com.dicoding.tugasbangkitfundamental1.ui.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.isVisible
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.tugasbangkitfundamental1.FavActivity
+import com.dicoding.tugasbangkitfundamental1.ui.fav.FavActivity
 import com.dicoding.tugasbangkitfundamental1.R
-import com.dicoding.tugasbangkitfundamental1.SettingActivity
-import com.dicoding.tugasbangkitfundamental1.ViewModelFactory
-import com.dicoding.tugasbangkitfundamental1.data.remote.response.Users
+import com.dicoding.tugasbangkitfundamental1.ui.setting.SettingActivity
+import com.dicoding.tugasbangkitfundamental1.ui.viewmodel.ViewModelFactory
 import com.dicoding.tugasbangkitfundamental1.databinding.ActivityMainBinding
 import com.dicoding.tugasbangkitfundamental1.ui.detail.DetailActivity
+import com.dicoding.tugasbangkitfundamental1.ui.adapter.UserAdapter
+import com.dicoding.tugasbangkitfundamental1.ui.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

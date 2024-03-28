@@ -1,4 +1,4 @@
-package com.dicoding.tugasbangkitfundamental1.ui
+package com.dicoding.tugasbangkitfundamental1.ui.adapter
 
 import android.content.Intent
 import android.util.Log
@@ -13,7 +13,9 @@ import com.dicoding.tugasbangkitfundamental1.databinding.ItemUsersBinding
 import com.dicoding.tugasbangkitfundamental1.ui.detail.DetailActivity
 
 
-class UserAdapter(private val onClick: (Users) -> Unit) : ListAdapter<Users, UserAdapter.ViewHolder>(DIFF_CALLBACK) {
+class UserAdapter(private val onClick: (Users) -> Unit) : ListAdapter<Users, UserAdapter.ViewHolder>(
+    DIFF_CALLBACK
+) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemUsersBinding.inflate(LayoutInflater.from(parent.context), parent, false)

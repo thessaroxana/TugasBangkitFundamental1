@@ -1,4 +1,4 @@
-package com.dicoding.tugasbangkitfundamental1
+package com.dicoding.tugasbangkitfundamental1.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -33,11 +33,11 @@ class FavUserAdapter (
 
     class MyViewHolder(val binding: FavItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(user: FavUserEntity) {
-            binding.tvNamaUser.text = user.username
+            binding.nama.text = user.username
             binding.btnDelete.isVisible = true
             Glide.with(binding.root)
                 .load(user.avatar)
-                .into(binding.ivProfilePicture)
+                .into(binding.profilePicture)
                 .clearOnDetach()
         }
     }

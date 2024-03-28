@@ -1,10 +1,11 @@
-package com.dicoding.tugasbangkitfundamental1.ui.detail
+package com.dicoding.tugasbangkitfundamental1.ui.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dicoding.tugasbangkitfundamental1.data.GithubUserRepository
+import com.dicoding.tugasbangkitfundamental1.data.Hasil
 import com.dicoding.tugasbangkitfundamental1.data.remote.response.Users
 import com.dicoding.tugasbangkitfundamental1.data.remote.retrofit.ApiConfig
 import retrofit2.Call
@@ -31,23 +32,23 @@ class FollowViewModel(private val githubUserRepository: GithubUserRepository) : 
     fun getFollowers(username: String) {
         githubUserRepository.getFollowers(username).observeForever { result ->
             when (result) {
-                is Result.Loading -> {
+                is Hasil.Loading -> {
                     _isLoading.value = true
                     _isEmpty.value = false
                 }
 
-                is Result.Success -> {
+                is Hasil.Success -> {
                     _isLoading.value = false
                     _isEmpty.value = false
                     _listFollowers.value = result.data
                 }
 
-                is Result.Error -> {
+                is Hasil.Error -> {
                     _isLoading.value = false
                     _isEmpty.value = true
                 }
 
-                is Result.Empty -> {
+                is Hasil.Empty -> {
                     _isLoading.value = false
                     _isEmpty.value = true
                 }
@@ -59,24 +60,24 @@ class FollowViewModel(private val githubUserRepository: GithubUserRepository) : 
     fun getFollowing(username: String) {
         githubUserRepository.getFollowings(username).observeForever { result ->
             when (result) {
-                is Result.Loading -> {
+                is Hasil.Loading -> {
                     _isLoading.value = true
                     _isEmpty.value = false
                 }
 
-                is Result.Success -> {
+                is Hasil.Success -> {
                     _isLoading.value = false
                     _isEmpty.value = false
                     _listFollowing.value = result.data
 
                 }
 
-                is Result.Error -> {
+                is Hasil.Error -> {
                     _isLoading.value = false
                     _isEmpty.value = true
                 }
 
-                is Result.Empty -> {
+                is Hasil.Empty -> {
                     _isLoading.value = false
                     _isEmpty.value = true
                 }

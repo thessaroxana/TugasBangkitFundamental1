@@ -1,4 +1,4 @@
-package com.dicoding.tugasbangkitfundamental1
+package com.dicoding.tugasbangkitfundamental1.ui.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

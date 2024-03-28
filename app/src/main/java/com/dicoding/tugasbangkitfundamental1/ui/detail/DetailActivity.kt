@@ -9,16 +9,15 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isGone
-import androidx.lifecycle.ViewModelProvider
-import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
-import com.dicoding.tugasbangkitfundamental1.FavActivity
+import com.dicoding.tugasbangkitfundamental1.ui.fav.FavActivity
 import com.dicoding.tugasbangkitfundamental1.R
 import com.dicoding.tugasbangkitfundamental1.data.local.FavUserEntity
 import com.dicoding.tugasbangkitfundamental1.databinding.ActivityDetailBinding
-import com.google.android.ads.mediationtestsuite.viewmodels.ViewModelFactory
-import com.google.android.material.tabs.TabLayout
+import com.dicoding.tugasbangkitfundamental1.ui.adapter.SectionPagerAdapter
+import com.dicoding.tugasbangkitfundamental1.ui.viewmodel.DetailViewModel
 import com.google.android.material.tabs.TabLayoutMediator
+import com.dicoding.tugasbangkitfundamental1.ui.viewmodel.ViewModelFactory
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding

@@ -1,4 +1,4 @@
-package com.dicoding.tugasbangkitfundamental1
+package com.dicoding.tugasbangkitfundamental1.ui.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
@@ -7,9 +7,6 @@ import com.dicoding.tugasbangkitfundamental1.data.GithubUserRepository
 import com.dicoding.tugasbangkitfundamental1.data.SettingPreference
 import com.dicoding.tugasbangkitfundamental1.data.dataStore
 import com.dicoding.tugasbangkitfundamental1.data.di.Injection
-import com.dicoding.tugasbangkitfundamental1.ui.MainViewModel
-import com.dicoding.tugasbangkitfundamental1.ui.detail.DetailViewModel
-import com.dicoding.tugasbangkitfundamental1.ui.detail.FollowViewModel
 
 class ViewModelFactory private constructor(
     private val preference: SettingPreference, private val githubUserRepository: GithubUserRepository

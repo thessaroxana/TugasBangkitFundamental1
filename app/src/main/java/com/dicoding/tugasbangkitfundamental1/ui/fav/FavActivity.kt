@@ -1,4 +1,4 @@
-package com.dicoding.tugasbangkitfundamental1
+package com.dicoding.tugasbangkitfundamental1.ui.fav
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,9 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.tugasbangkitfundamental1.databinding.ActivityFavBinding
 import com.dicoding.tugasbangkitfundamental1.ui.detail.DetailActivity
+import com.dicoding.tugasbangkitfundamental1.ui.adapter.FavUserAdapter
+import com.dicoding.tugasbangkitfundamental1.ui.viewmodel.FavoriteViewModel
+import com.dicoding.tugasbangkitfundamental1.ui.viewmodel.ViewModelFactory
 
 class FavActivity : AppCompatActivity() {
 

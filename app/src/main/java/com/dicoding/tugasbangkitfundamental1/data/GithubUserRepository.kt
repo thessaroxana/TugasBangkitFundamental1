@@ -27,7 +27,7 @@ class GithubUserRepository private constructor(
     }
 
     fun getFollowings(username: String): LiveData<Hasil<List<Users>>> = liveData {
-        Log.d("Github User repository", "getFollowings: $username")
+        Log.d("Github User repository", "getFollowing: $username")
         emit(Hasil.Loading)
         try {
             val response = apiService.getFollowing(username)
@@ -46,7 +46,7 @@ class GithubUserRepository private constructor(
             if (response.isEmpty()) emit(Hasil.Empty)
             else emit(Hasil.Success(response))
         } catch (e: Exception) {
-            Log.d("GithubUserRepository", "getFollowers: ${e.message.toString()}")
+            Log.d("GithubUserRepository", "getFollower: ${e.message.toString()}")
             emit(Hasil.Error(e.message.toString()))
         }
 
@@ -84,7 +84,8 @@ class GithubUserRepository private constructor(
         private var instance: GithubUserRepository? = null
         fun getInstance(
             apiService: ApiService,
-            favUserDao: FavUserDao
+            favUserDao: FavUserDao,
+            dataStore: SettingPreference
         ): GithubUserRepository =
             instance ?: synchronized(this) {
                 instance ?: GithubUserRepository(apiService, favUserDao)
