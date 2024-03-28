@@ -1,8 +1,8 @@
-package com.dicoding.tugasbangkitfundamental1.data.retrofit
+package com.dicoding.tugasbangkitfundamental1.data.remote.retrofit
 
-import com.dicoding.tugasbangkitfundamental1.data.response.DetailUserResponse
-import com.dicoding.tugasbangkitfundamental1.data.response.GithubResponse
-import com.dicoding.tugasbangkitfundamental1.data.response.Users
+import com.dicoding.tugasbangkitfundamental1.data.remote.response.DetailUserResponse
+import com.dicoding.tugasbangkitfundamental1.data.remote.response.GithubResponse
+import com.dicoding.tugasbangkitfundamental1.data.remote.response.Users
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -16,20 +16,20 @@ interface ApiService {
     @GET("search/users")
     fun getUsers(
         @Query("q") username: String,
-    ): Call<GithubResponse>
+    ):GithubResponse
 
     @GET("users/{username}")
     fun getDetailUsers(
         @Path("username") username: String,
-    ): Call<DetailUserResponse>
+    ):DetailUserResponse
 
     @GET("users/{username}/followers")
     fun getFollowers(
         @Path("username") username: String,
-    ) : Call<List<Users>>
+    ) : List<Users>
 
     @GET("users/{username}/following")
     fun getFollowing(
         @Path("username") username: String,
-    ) : Call<List<Users>>
+    ) : List<Users>
 }

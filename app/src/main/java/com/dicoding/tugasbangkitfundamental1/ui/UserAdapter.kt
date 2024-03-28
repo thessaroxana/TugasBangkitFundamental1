@@ -8,12 +8,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.dicoding.tugasbangkitfundamental1.data.response.Users
+import com.dicoding.tugasbangkitfundamental1.data.remote.response.Users
 import com.dicoding.tugasbangkitfundamental1.databinding.ItemUsersBinding
 import com.dicoding.tugasbangkitfundamental1.ui.detail.DetailActivity
 
 
-class UserAdapter : ListAdapter<Users, UserAdapter.ViewHolder>(DIFF_CALLBACK) {
+class UserAdapter(private val onClick: (Users) -> Unit) : ListAdapter<Users, UserAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemUsersBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -30,13 +30,13 @@ class UserAdapter : ListAdapter<Users, UserAdapter.ViewHolder>(DIFF_CALLBACK) {
         RecyclerView.ViewHolder(binding.root) {
         fun bind(users: Users) {
             binding.apply {
-                binding.tvNama.text = users.login
+                binding.nama.text = users.login
                 Glide.with(binding.root)
                     .load(users.avatarUrl)
-                    .into(binding.ivProfilePicture)
+                    .into(binding.profilePicture)
             }
             binding.root.setOnClickListener {
-                var intent = Intent(binding.root.context, DetailActivity::class.java)
+                val intent = Intent(binding.root.context, DetailActivity::class.java)
                 Log.d("UserAdapter", "onBindViewHolder: $intent")
                 intent.putExtra(DetailActivity.EXTRA_LOGIN, users.login)
                 binding.root.context.startActivity(intent)

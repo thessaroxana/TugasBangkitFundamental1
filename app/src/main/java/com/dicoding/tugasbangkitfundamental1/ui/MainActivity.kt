@@ -1,21 +1,30 @@
 package com.dicoding.tugasbangkitfundamental1.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.tugasbangkitfundamental1.data.response.Users
+import com.dicoding.tugasbangkitfundamental1.FavActivity
+import com.dicoding.tugasbangkitfundamental1.R
+import com.dicoding.tugasbangkitfundamental1.SettingActivity
+import com.dicoding.tugasbangkitfundamental1.ViewModelFactory
+import com.dicoding.tugasbangkitfundamental1.data.remote.response.Users
 import com.dicoding.tugasbangkitfundamental1.databinding.ActivityMainBinding
+import com.dicoding.tugasbangkitfundamental1.ui.detail.DetailActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-
-    companion object {
-        private const val TAG = "MainActivity"
+    private lateinit var adapter: UserAdapter
+    private val mainViewModel: MainViewModel by viewModels {
+        ViewModelFactory.getInstance(application)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,12 +32,24 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val mainViewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory()
-        )[MainViewModel::class.java]
-        mainViewModel.listUser.observe(this) { user ->
-            setUserData(user)
+        adapter = UserAdapter {
+            val intent = Intent(this, DetailActivity::class.java)
+            intent.putExtra(DetailActivity.EXTRA_LOGIN, it.login)
+            startActivity(intent)
+        }
+
+        binding.userGithub.adapter = adapter
+
+        mainViewModel.isEmpty.observe(this) {
+            binding.empty.isVisible = it
+        }
+
+        mainViewModel.isLoading.observe(this) {
+            binding.progressBar.isVisible = it
+        }
+
+        mainViewModel.listUser.observe(this) {
+            adapter.submitList(it)
         }
 
         with(binding) {
@@ -36,36 +57,39 @@ class MainActivity : AppCompatActivity() {
             searchView
                 .editText
                 .setOnEditorActionListener { textView, actionId, event ->
-//                    searchView.hide()
+                    searchBar.text
                     mainViewModel.findUser(searchView.text.toString())
                     searchView.hide()
                     true
                 }
+            searchBar.inflateMenu(R.menu.option_menu)
+            searchBar.setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.favUser -> {
+                        val action = Intent(this@MainActivity, FavActivity::class.java)
+                        startActivity(action)
+                    }
+                    R.id.setting -> {
+                        val action = Intent(this@MainActivity, SettingActivity::class.java)
+                        startActivity(action)
+                    }
+                }
+                true
+            }
         }
+
+        mainViewModel.getThemeSetting().observe(this) { isDarkModeActive: Boolean ->
+            if (isDarkModeActive) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
+
         val layoutManager = LinearLayoutManager(this)
-        binding.rvUserGithub.layoutManager = layoutManager
+        binding.userGithub.layoutManager = layoutManager
+
         val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
-        binding.rvUserGithub.addItemDecoration(itemDecoration)
-
-        mainViewModel.listUser.observe(this) { user ->
-            setUserData(user)
-        }
-
-        mainViewModel.isLoading.observe(this) {
-            binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
-        }
-
-        mainViewModel.errorMessage.observe(this) {
-            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-        }
-
-
-    }
-
-    private fun setUserData(githubUsers: List<Users>) {
-        val adapter = UserAdapter()
-        adapter.submitList(githubUsers)
-        binding.rvUserGithub.adapter = adapter
-        Log.d(TAG, "setUserData: dapat dijalankan")
+        binding.userGithub.addItemDecoration(itemDecoration)
     }
 }

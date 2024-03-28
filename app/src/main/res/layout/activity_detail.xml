@@ -36,7 +36,7 @@
             </com.google.android.material.appbar.MaterialToolbar>
 
             <com.mikhaellopez.circularimageview.CircularImageView
-                android:id="@+id/ivProfilePicture"
+                android:id="@+id/profile"
                 android:layout_width="130dp"
                 android:layout_height="130dp"
                 android:layout_margin="8dp"
@@ -54,7 +54,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvNama"
+                android:id="@+id/nama"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -70,7 +70,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tvLabelFollowers"
+                    android:id="@+id/labelFollowers"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/followers"
@@ -82,7 +82,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tvLabelFollowing"
+                    android:id="@+id/labelFollowing"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/following"
@@ -102,9 +102,9 @@
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="@+id/tvLabelFollowers"
-                    app:layout_constraintStart_toStartOf="@+id/tvLabelFollowers"
-                    app:layout_constraintTop_toBottomOf="@id/tvLabelFollowers" />
+                    app:layout_constraintEnd_toEndOf="@+id/labelFollowers"
+                    app:layout_constraintStart_toStartOf="@+id/labelFollowers"
+                    app:layout_constraintTop_toBottomOf="@id/labelFollowers" />
 
                 <TextView
                     android:id="@+id/jumlahFollowing"
@@ -115,9 +115,9 @@
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="@+id/tvLabelFollowing"
-                    app:layout_constraintStart_toStartOf="@+id/tvLabelFollowing"
-                    app:layout_constraintTop_toBottomOf="@id/tvLabelFollowing" />
+                    app:layout_constraintEnd_toEndOf="@+id/labelFollowing"
+                    app:layout_constraintStart_toStartOf="@+id/labelFollowing"
+                    app:layout_constraintTop_toBottomOf="@id/labelFollowing" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline"
@@ -148,7 +148,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayoutAppBar"
         app:tabIndicatorColor="#FFD23F"
-        app:tabRippleColor="@color/material_dynamic_neutral50"
+        app:tabRippleColor="#747679"
         app:tabTextColor="@color/white" />
 
     <androidx.viewpager2.widget.ViewPager2
@@ -159,5 +159,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tabs" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabFavorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        app:srcCompat="@drawable/baseline_favorite_border_24"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

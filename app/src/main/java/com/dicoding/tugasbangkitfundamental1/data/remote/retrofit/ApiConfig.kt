@@ -1,4 +1,4 @@
-package com.dicoding.tugasbangkitfundamental1.data.retrofit
+package com.dicoding.tugasbangkitfundamental1.data.remote.retrofit
 
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

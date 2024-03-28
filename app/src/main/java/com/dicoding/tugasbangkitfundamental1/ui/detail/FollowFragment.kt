@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.tugasbangkitfundamental1.data.response.Users
+import com.dicoding.tugasbangkitfundamental1.data.remote.response.Users
 import com.dicoding.tugasbangkitfundamental1.databinding.FragmentFollowBinding
 import com.dicoding.tugasbangkitfundamental1.ui.UserAdapter
 
@@ -39,15 +39,20 @@ class FollowFragment : Fragment() {
         val username = requireActivity().intent.getStringExtra(DetailActivity.EXTRA_LOGIN)
 
         val layoutManager = LinearLayoutManager(context)
-        binding.rvFollow.layoutManager = layoutManager
+        binding.follow.layoutManager = layoutManager
 
         followViewModel.isLoading.observe(viewLifecycleOwner) {
             binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
         }
 
+//        followViewModel.isEmpty.observe(viewLifecycleOwner) {
+//            binding.tvNoData.visibility = if (it)View.GONE else View.VISIBLE
+//        }
+
         followViewModel.errorMessage.observe(viewLifecycleOwner) {
             Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
         }
+
 
         if (index == 1) {
             followViewModel.getFollowers(username.toString())
@@ -70,7 +75,7 @@ class FollowFragment : Fragment() {
     private fun setData(list: List<Users>) {
         val adapter = UserAdapter()
         adapter.submitList(list)
-        binding.rvFollow.adapter = adapter
+        binding.follow.adapter = adapter
     }
 
 }
