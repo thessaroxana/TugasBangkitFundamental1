@@ -64,6 +64,9 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    testImplementation("junit:junit:4.13.2")
+    implementation("com.mikhaellopez:circularimageview:4.3.1")
+
 
 
 //  room
@@ -75,5 +78,7 @@ dependencies {
 //  livedata
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
+
+    implementation ("com.google.android.gms:play-services-ads:23.0.0")
 
 }
